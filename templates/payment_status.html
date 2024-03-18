@@ -1,0 +1,29 @@
+{% extends 'adminindex.html' %}
+
+{% block content %}
+
+    <h1>Payment Status</h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Timestamp</th>
+            
+            
+        </tr>
+    {% if user_pay %}
+        <tr>
+            {% for Paymentz  in user_pay %}
+            <tr> 
+               <td>{{Paymentz.user}}</td>
+               <td>{{Paymentz.amount}}</td> 
+                <td>{{Paymentz.timestamp }}</td>
+            </tr>
+            {% endfor %}
+        
+    {% else %}
+        <p>No payment found.</p>
+        </tr>
+    {% endif %}
+</table>
+{% endblock %}

@@ -1,0 +1,9 @@
+<h1>{{ product.pname }}</h1>
+<p>{{ product.description }}</p>
+<p>Average Rating: {{ product.avg_rating }}</p>
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit Rating</button>
+</form>

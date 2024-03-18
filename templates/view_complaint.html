@@ -1,0 +1,29 @@
+{% extends 'adminindex.html' %}
+
+{% block content %}
+
+    <h1>Customer Complaints</h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>SUBJECT</th>
+            <th>CREATED_AT</th>
+            <th>DESCRIPTION</th>
+            
+        </tr>
+    {% if user_complaints %}
+        <tr>
+            {% for complaint in user_complaints %}
+            <tr> 
+               <td>{{complaint.user}}</td>
+               <td>{{ complaint.subject }}</td> - <td>{{ complaint.created_at }}</td>
+                <td>{{ complaint.description }}</td>
+            </tr>
+            {% endfor %}
+        
+    {% else %}
+        <p>No complaints found.</p>
+        </tr>
+    {% endif %}
+</table>
+{% endblock %}

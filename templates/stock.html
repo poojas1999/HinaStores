@@ -1,0 +1,18 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products List</title>
+</head>
+<body>
+    <h1>Products List</h1>
+    <ul>
+    {% for data in Stockz %}
+        <li>{{ data.prodname }} - {{ data.status }}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
+
+

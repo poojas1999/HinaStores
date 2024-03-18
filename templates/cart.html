@@ -1,0 +1,163 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		/* Add CSS styles for flex container and items */
+		.product-list {
+			display: flex;
+			flex-wrap: wrap; /* Allow items to wrap to the next row if necessary */
+			justify-content: space-between; /* Space items evenly along the main axis */
+			list-style: none; /* Remove list styles */
+			padding: 0;
+		}
+
+		.product-item {
+			
+			flex: 1; /* Grow to fill available space evenly */
+			/* Limit item width to avoid overcrowding */
+			margin: 10px; /* Add spacing between items */
+			border: 1px solid #ccc; /* Add a border for visual separation */
+			padding: 10px;
+			text-align: center;
+		}
+
+		/* Style the "Buy Now" button */
+		.buy-now-button {
+			display: block;
+			margin-top: 10px;
+			background-color: #007bff;
+			color: #fff;
+			text-decoration: none;
+			padding: 5px 10px;
+			border-radius: 5px;
+		}
+
+
+		body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.cart {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+table {
+	margin-top:-35px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tfoot td {
+  font-weight: bold;
+}
+
+.checkout-button {
+  display: block;
+  width: 200px;
+  margin: 20px auto;
+  padding: 10px;
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  position: relative;
+  top:300px;
+  left:550px;
+}
+
+.checkout-button:hover {
+  background-color: #0056b3;
+}
+.container12{
+	position: relative;
+	left:1200px;
+	top:550px;
+}
+.para2{
+	position: relative;
+	top:20px;
+	color:rgb(11, 130, 11);
+}
+body{
+	background-color:white;
+}
+
+
+	</style>
+</head>
+
+<body>
+
+	<h1 class="para2">Shopping Cart</h1>
+<div class="container16"></div>
+	<!--<div class="product-list">-->
+		<table class="table">
+			<tr>
+				<th>SI NO</th>
+				<th>PRODUCT</th>
+				<th>NAME</th>
+				 <th>QUANTITY</th>
+				<th>PRICE<th>
+				
+			</tr>
+	
+
+	{% for item in cart_items %}
+	<tr>
+        <td>{{forloop.counter}}</td>
+	<!--<div class="product-item">-->
+		
+		<td><img src="{{item.product.image1.url}}" height="100px"></td>
+		<td>{{ item.product.pname }}</td>
+		<td>({{ item.quantity }})</td>
+		<td>Price: ₹{{ item.product.price }}</td>
+		<td><a href="{% url 'remove_from_cart' item.id %}">Remove</a></td>
+        
+		
+	</div>
+	</div>
+	{% empty %}
+	<p>Your cart is empty.</p>
+	{% endfor %}
+
+	</div>
+<div class="container12">
+	<p>Total Price: ₹{{ total_price }}</p>
+
+    <a href="{% url 'shops' %}">Continue Shopping</a>
+	</div>
+	</table>
+  </div>
+  <a href="/process_pay" class="checkout-button">Proceed to Checkout</a>
+</div>
+</div>
+</body>
+
+</html>

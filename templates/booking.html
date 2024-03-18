@@ -1,0 +1,32 @@
+{% extends 'adminindex.html' %}
+
+{% block content %}
+
+    <h1>Customer Product Booking Details</h1>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Productname</th>
+            <th>Quantity</th>
+            <th>Amount</th>
+            <th>Booking Time</th>
+            
+        </tr>
+    {% if user_pay %}
+        <tr>
+            {% for Paymentz in user_pay %}
+            <tr> 
+               <td>{{Paymentz.user}}</td>
+               <td>{{Paymentz.pname}}</td>
+             <td>{{Paymentz.quantity}}</td>
+                <td>{{Paymentz.amount}}</td>
+                <td>{{Paymentz.timestamp}}</td>
+            </tr>
+            {% endfor %}
+        
+    {% else %}
+        <p>No booking details  found.</p>
+        </tr>
+    {% endif %}
+</table>
+{% endblock %}

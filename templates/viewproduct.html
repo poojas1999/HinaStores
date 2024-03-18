@@ -1,0 +1,26 @@
+{% extends 'adminindex.html' %}
+
+{% block content %}
+
+<h1>VIEW PRODUCTS</h1>
+<table class="table">
+    <tr>
+        <th>SI NO</th>
+        <th>IMAGE</th>
+        <th>PNAME</th>
+        <th>PRICE</th>
+        <th>UPDATE</th>
+        <th>DELETE</th>
+    </tr>
+    {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td><img src="{{i.image.url}}" height="50px"></td>
+        <td>{{i.pname}}</td>
+        <td>{{i.price}}</td>
+        <td><a href="{% url 'update_product' i.id %}" class="btn btn-success">Update</a></td>
+        <td><a href="{% url 'del_product' i.id %}" class="btn btn-danger">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

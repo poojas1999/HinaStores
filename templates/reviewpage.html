@@ -1,0 +1,194 @@
+{% extends "themes.html" %} 
+
+{% block content %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Review Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .review-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .review-form label {
+    font-weight: bold;
+  }
+
+  .review-form input[type="text"],
+  .review-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .review-form textarea {
+    height: 100px;
+  }
+
+  .review-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+
+  .review-form button:hover {
+    background-color: #0056b3;
+  }
+  .container2{
+    position: relative;
+    top:50px;
+    bottom: 50px;
+  }
+
+</style>
+</head>
+<body>
+<div class="container2">
+<div class="review-form">
+  <h2>Add Review</h2>
+  <div>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit"></input>
+</form>
+</div>
+</div>
+
+
+ <!-- Start Footer  -->
+ <footer>
+  <div class="footer-main">
+      <div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Business Time</h3>
+        <ul class="list-time">
+          <li>Monday - Friday: 08.00am to 05.00pm</li> <li>Saturday: 10.00am to 08.00pm</li> <li>Sunday: <span>Closed</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Newsletter</h3>
+        <form class="newsletter-box">
+          <div class="form-group">
+            <input class="" type="email" name="Email" placeholder="Email Address*" />
+            <i class="fa fa-envelope"></i>
+          </div>
+          <button class="btn13 hvr-hover" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 col-sm-12">
+      <div class="footer-top-box">
+        <h3>Social Media</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <ul>
+                          <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                          <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                      </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+          <div class="row">
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-widget">
+                      <h4>About Hina Stores</h4>
+                      <p>India is well known for its tradition and so is its tradition of cooking with earthenware. It’s an age-old concept that has deserted with time. This golden concept was then washed over by modernization as we moved to the stainless steel or bone china or melamine era.</p> 
+        <p>Hina Stores prides its initiative on preserving our old culture. We produce clay products and clay pots that lead to a healthy, natural life and also revive our rich tradition.</p> 							
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link">
+                      <h4>Information</h4>
+                      <ul>
+                          <li><a href="#">About Us</a></li>
+                          <li><a href="#">Customer Service</a></li>
+                          <li><a href="#">Our Sitemap</a></li>
+                          <li><a href="#">Terms &amp; Conditions</a></li>
+                          <li><a href="#">Privacy Policy</a></li>
+                          <li><a href="#">Delivery Information</a></li>
+                      </ul>
+                  </div>
+              </div>
+              <div class="col-lg-4 col-md-12 col-sm-12">
+                  <div class="footer-link-contact">
+                      <h4>Contact Us</h4>
+                      <ul>
+                          <li>
+                              <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                          </li>
+                          <li>
+                              <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                          </li>
+                          <li>
+                              <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</footer>
+<!-- End Footer  -->
+
+<!-- Start copyright  -->
+<div class="footer-copyright">
+  <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+      <a href="https://html.design/">html design</a></p>
+</div>
+<!-- End copyright  -->
+
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+<!-- ALL JS FILES -->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- ALL PLUGINS -->
+<script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/inewsticker.js' %}"></script>
+<script src="{% static 'js/bootsnav.js.' %}"></script>
+<script src="{% static 'js/images-loded.min.js' %}"></script>
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/baguetteBox.min.js' %}"></script>
+<script src="{% static 'js/form-validator.min.js' %}"></script>
+<script src="{% static 'js/contact-form-script.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>
+
+
+{% endblock %}

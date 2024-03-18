@@ -1,0 +1,16 @@
+{% extends 'adminindex.html' %}
+
+{% block content %}
+    <h1>Customer Reviews</h1>
+    <ul>
+        {% for Review in datas %}
+            <li>
+                
+                <strong>Rating:</strong> {{ Review.rate }}/6<br>
+                <strong>Comment:</strong> {{ Review.comment }}<br>
+                <strong>Created At:</strong> {{ Review.created_at }}<br>
+            </li>
+        {% endfor %}
+  </ul> 
+{% endblock %}
+ 
