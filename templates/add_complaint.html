@@ -74,6 +74,22 @@
         input[type="submit"]:hover {
             background-color: #45a049;
         }
+        .back-to-home-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    left:1250px;
+}
+
+.back-to-home-button:hover {
+    background-color: #45a049;
+}
+
     </style>
 </head>
 <body>
@@ -83,10 +99,11 @@
         <form method="post">
             {% csrf_token %}
             {{ form.as_p }}
-            <input type="submit"></input>
+            <input type="submit"></input>   
         </form>
+       
     </div>
-
+    <a href="/shops" class="back-to-home-button">Back</a>
     
 </body>
 </html>

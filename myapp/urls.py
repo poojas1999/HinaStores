@@ -40,5 +40,11 @@ urlpatterns = [
     path('view_reviews', views.view_reviews, name='view_reviews'),
     path('reviews', views.reviews, name='reviews'),
     path('view_booking', views.view_booking, name='view_booking'),
-    path('product_stock/<int:id>/', views.product_stock, name='product_stock'),
+    path('admin_view_cart', views.admin_view_cart, name='admin_view_cart'),
+    path('custorders', views.custorders, name='custorders'),
+    path('addorder', views.addorder, name='addorder'),
+    path('vieworder', views.vieworder, name='vieworder'),
+    path('updateorder/<int:id>/', views.updateorder, name='updateorder'),
+    
+    
 ]

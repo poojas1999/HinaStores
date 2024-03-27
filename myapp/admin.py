@@ -12,4 +12,6 @@ admin.site.register(models.Paymentz)
 admin.site.register(models.Paystatus)
 admin.site.register(models.Review)
 admin.site.register(models.Stockz)
+admin.site.register(models.Order)
+admin.site.register(models.Contact)
 

@@ -1,0 +1,32 @@
+{% extends 'adminindex.html' %}
+
+{% block content %}
+<style>
+    .btn{
+        color:rgb(241, 241, 245);
+        background-color: rgb(56, 53, 233);
+    }
+
+</style>
+<h1>PRODUCT STATUS</h1>
+<table class="table">
+    <tr>
+        <th>USER</th>
+        <th>PRODUCT</th>
+        <th>STATUS</th>
+        <th>UPDATE</th>
+        
+    </tr>
+    {% for i in orders %}
+    <tr>
+        
+        <td>{{i.order_number}}</td>
+        <td>{{i.user}}</td>
+        <td>{{i.product.pname}}</td>
+        <td>{{i.status}}</td>
+        <td><a href="{% url 'updateorder' i.id %}" class="btn btn-success">Update</a></td>
+       
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

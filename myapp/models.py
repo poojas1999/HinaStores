@@ -24,6 +24,7 @@ class Product(models.Model):
     price=models.IntegerField()
     sub=models.TextField()
     desc=models.TextField()
+    stock_available = models.IntegerField(default=0)
     
 
     def __str__(self):
@@ -100,8 +101,8 @@ class Paymentz(models.Model):
     card_expiry = models.CharField(max_length=5)
     card_cvv = models.CharField(max_length=4)
     timestamp = models.DateTimeField(auto_now_add=True)
-    pname = models.ForeignKey(Product, on_delete=models.CASCADE,null=True, blank=True)
-    quantity = models.ForeignKey(CartItem, on_delete=models.CASCADE,null=True, blank=True)
+    product= models.ForeignKey(Product, on_delete=models.CASCADE,null=True, blank=True)
+    cart = models.ForeignKey(CartItem, on_delete=models.CASCADE,null=True, blank=True)
 
 
     def __str__(self):
@@ -162,11 +163,35 @@ class Stocks(models.Model):
     quantity = models.ForeignKey(CartItem, on_delete=models.CASCADE,null=True, blank=True)
 
 class Stockz(models.Model):
-    pname = models.ForeignKey(Product, on_delete=models.CASCADE)
+    pname=models.ForeignKey(Product, on_delete=models.CASCADE,null=True, blank=True)
     status = models.CharField(max_length=50, choices=[('In Stock', 'In Stock'), ('Out of Stock', 'Out of Stock')])
 
     def __str__(self):
         return self.pname
     
 
+class Stockzz(models.Model):
+    names = models.CharField(max_length=100)
+    status = models.CharField(max_length=50, choices=[('In Stock', 'In Stock'), ('Out of Stock', 'Out of Stock')])
+
+    def __str__(self):
+        return self.names
+
+class Order(models.Model):
+    STATUS_CHOICES = (
+        ('PENDING', 'Pending'),
+        ('SHIPPED', 'Shipped'),
+        ('DELIVERED', 'Delivered'),
+        ('CANCELLED', 'Cancelled'),
+    )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product= models.ForeignKey(Product, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDING')
+    order_number=models.IntegerField()
+
+class Contact(models.Model):
+    nam=models.CharField(max_length=100)
+    mailid=models.EmailField() 
+    subject=models.CharField(max_length=100)
+    msg=models.CharField(max_length=100)
     

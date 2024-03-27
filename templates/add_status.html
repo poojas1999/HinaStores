@@ -1,0 +1,28 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Productstatus</title>
+</head>
+<style>
+    .container{
+        position: relative;
+        left:10px;
+    }
+</style>
+<body>
+    <div class="container">
+    <h1>Add ProductStatus</h1>
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    </div>
+    <a href="/vieworder">View Product Status</a>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'adminindex.html' %}
+{% block content %}
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+     .card{
+        position: relative;
+        left:50px;
+     }
+     .btn{
+        position: relative;
+        left:380px;
+        top:-10px;
+     }
+    </style>
+</head>
+<body>
+<div class="card" style="width: 60rem";>
+    <h1><center>Update Products Status</center></h1>
+ <form method="POST">
+     {% csrf_token %}
+     {{form|crispy}}
+     <input type="submit" class="btn btn-dark btn-block"  style="width: 10rem"value="Submit"/>
+ </form>
+    </div>
+</body>
+</html>
+{% endblock %}

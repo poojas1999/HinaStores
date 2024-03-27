@@ -8,8 +8,8 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib import auth,messages
 from django.contrib.auth import login
 from django.contrib.auth import logout
-from myapp.forms import ComplaintForm, PaymentForm, ProductForm, RatingForm, ReviewForm, customerreg, userreg
-from myapp.models import CartItem, Complaint, Customer, Pay, Payment, Payments, Paymentss, Paymentz, Paystatus,Product, Rating, Rev, Review, Stocks, Stockz
+from myapp.forms import ComplaintForm, ContactForm, OrderForm, PaymentForm, ProductForm, RatingForm, ReviewForm, customerreg, userreg
+from myapp.models import CartItem, Complaint, Contact, Customer, Order, Pay, Payment, Payments, Paymentss, Paymentz, Paystatus,Product, Rating, Rev, Review, Stocks, Stockz, Stockzz
 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -25,7 +25,14 @@ def detail(request):
     return render(request,'about.html')
 
 def contact(request):
-    return render(request,'contact-us.html')
+    form= ContactForm(request.POST or None)
+    if form.is_valid():
+         form.save()
+  
+    context= {'form': form }
+        
+    return render(request, 'contact-us.html', context)
+
 
 def shops(request):
     data=Product.objects.all()
@@ -123,7 +130,12 @@ def view_complaints(request):
 
 def pro(request,id):
     data=Product.objects.get(id=id)
-    return render(request,'productdetail.html',{'data':data})
+    context = {
+        'data':data,
+        'stock_available':data.stock_available
+
+    }
+    return render(request,'productdetail.html',context)
 
 
 def logout_request(request):
@@ -147,6 +159,16 @@ def remove_from_cart(request, product_id):
     cart_item = CartItem.objects.get(id=product_id)
     cart_item.delete()
     return redirect('view_cart')
+
+
+def admin_view_cart(request):
+    # Retrieve all cart items from all users
+    cart_items = CartItem.objects.all()
+    context = {
+        'cart_items': cart_items
+
+    }
+    return render(request, 'view_cart.html', context)
 
 # def checkout(request):
 #     if request.method == 'POST':
@@ -274,13 +296,11 @@ def payment_successful(request):
 def process_pay(request):
     if request.method == 'POST':
         user = request.user
-        pname=request.pname
-        quantity=request.quantity
         amount = request.POST.get('amount')
         card_number = request.POST.get('card_number')
         card_expiry = request.POST.get('card_expiry')
         card_cvv = request.POST.get('card_cvv')
-        Payment = Paymentz.objects.create(user=user,pname=pname,quantity=quantity,amount=amount,card_number=card_number,card_expiry=card_expiry,card_cvv=card_cvv)
+        Payment = Paymentz.objects.create(user=user,amount=amount,card_number=card_number,card_expiry=card_expiry,card_cvv=card_cvv)
         return redirect('payment_successful')
     return render(request, 'payment_form.html', {'form': forms})
         
@@ -381,9 +401,49 @@ def reviews(request):
 
 def view_booking(request):
     user_pay = Paymentz.objects.all()
-    return render(request, 'booking.html', {'user_pay': user_pay})
+    return render(request, 'booking.html',{'user_pay':user_pay})
+
+def addorder(request):
+    form = OrderForm()
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('adminindexpage')  
+    return render(request, 'add_status.html', {'form': form})
+
+# def custorders(request):
+#     user_orders = Order.objects.filter()
+#     return render(request, 'myorder.html', {'user_orders': user_orders})
+
+def custorders(request):
+    if request.method == 'POST':
+        order_number = request.POST.get('order_number')
+        pname = request.POST.get('pname')
+       
+        try:
+            orders = Order.objects.get(order_number=order_number, product__pname=pname)
+            status = orders.status
+            return render(request, 'myorder.html', {'orders': orders, 'status': status})
+        except Order.DoesNotExist:
+            error_message = "Order not found for the given order number and product name."
+            return render(request, 'myorder.html', {'error_message': error_message})
+
+    return render(request, 'myorder.html')
+
+def vieworder(request):
+    orders=Order.objects.all()
+    return render(request,'view_status.html',{'orders': orders})
+
+def updateorder(request,id):
+    orders=Order.objects.get(id=id)
+    form=OrderForm(instance=orders)
+    if request.method=='POST':
+        form=OrderForm(request.POST,instance=orders)
+        if form.is_valid():
+            form.save()
+            return redirect('vieworder')
+    return render(request,'update_status.html',{'form':form})
 
 
-def product_stock(request, id):
-    data = Stockz.objects.all()
-    return render(request,'stock.html',{'data': data})
+    

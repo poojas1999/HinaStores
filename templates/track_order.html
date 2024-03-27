@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Tracking</title>
+</head>
+<body>
+    <h2>Track Your Order</h2>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="order_number">Enter your order number:</label>
+        <input type="text" id="order_number" name="order_number">
+        <button type="submit">Track Order</button>
+    </form>
+</body>
+</html>
